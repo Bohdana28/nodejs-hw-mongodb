@@ -25,15 +25,15 @@ export const setupServer = () => {
         })
     });
 
-   app.get("/contacts/:contactId", async (req, res) => {
-       const { contactId } = req.params;
-       const data = await contactServices.getContactById(contactId);
+    app.get("/contacts/:contactId", async (req, res) => {
+        const { contactId } = req.params;
+        const data = await contactServices.getContactById(contactId);
        
        if (!data) {
            return res.status(404).json({
                message: 'Contact not found',
            })
-       }
+        };
 
         res.json({
             status: 200,
@@ -42,19 +42,19 @@ export const setupServer = () => {
         });
     });
 
-    app.use((req, res) => {
-        res.status(404).json({
-            message: `${req.url} not found`
-        })
-    });
+        app.use((req, res) => {
+            res.status(404).json({
+                message: `${req.url} not found`
+            })
+        });
 
-    app.use((error, req, res, next) => {
-        res.status(500).json({
-            message: error.message,
-        })
-    });
+        app.use((error, req, res, next) => {
+            res.status(500).json({
+                message: error.message,
+            })
+        });
 
-    const port = Number(env("PORT", 3000));
+        const port = Number(env("PORT", 3000));
 
-    app.listen(port, () => console.log(`Server running on port ${port}`));
-}
+        app.listen(port, () => console.log(`Server running on port ${port}`));
+    }
