@@ -11,6 +11,9 @@ import { sortByList } from "../db/models/Contact.js";
 export const getContactsController = async (req, res) => {
     const { page, perPage } = parsePaginationParams(req.query);
     const { sortBy, sortOrder } = parseSortParams(req.query, sortByList);
+    const { _id: userId } = req.user;
+    filter.userId = userId;
+
    
 
         const data = await contactServices.getContacts({ page, perPage, sortBy, sortOrder});
@@ -41,8 +44,9 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const addContactController = async (req, res) => {
+    const { _id: userId } = req.user;
     
-    const data = await contactServices.addContact(req.body);
+    const data = await contactServices.addContact({ ...req.body, userId });
 
     res.status(201).json({
         status: 201,
