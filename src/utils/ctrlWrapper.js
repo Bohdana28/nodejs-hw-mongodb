@@ -5,8 +5,8 @@ const ctrlWrapper = getContactByIdController => {
         } catch (error) {
             next(error);
         }
-    }
+    };
     return func;
-}
+};
 
 export default ctrlWrapper;
