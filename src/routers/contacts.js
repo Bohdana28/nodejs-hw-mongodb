@@ -20,7 +20,7 @@ contactsRouter.get("/", ctrlWrapper(contactsControllers.getContactsController));
 
 contactsRouter.get("/:contactId", isValidId, ctrlWrapper(contactsControllers.getContactByIdController));
 
-contactsRouter.post("/", isValidId, upload.single('photo'), validateBody(contactAddSchema), ctrlWrapper(contactsControllers.addContactController));
+contactsRouter.post("/", upload.single('photo'), validateBody(contactAddSchema), ctrlWrapper(contactsControllers.addContactController));
 
 contactsRouter.put("/:contactId", isValidId, upload.single('photo'), validateBody(contactAddSchema), ctrlWrapper(contactsControllers.upsertContactController));
 

@@ -16,7 +16,7 @@ router.post('/logout', ctrlWrapper(logoutUserController));
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
-router.post('/request-reset-email', validateBody(requestResetEmailSchema),
+router.post('/send-reset-email', validateBody(requestResetEmailSchema),
 ctrlWrapper(requestResetEmailController),
 );
 

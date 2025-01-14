@@ -8,7 +8,7 @@ import router from "./routers/index.js";
 
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
-//import { logger } from "./middlewares/logger.js";//
+import { logger } from "./middlewares/logger.js";
 
 import { UPLOAD_DIR } from './constants/index.js';
 
