@@ -19,15 +19,19 @@ export const getContactById = (contactId, userId) => ContactCollection.findOne({
 
 export const addContact = payload => ContactCollection.create(payload);
 
-export const updateContact = async (contactId, payload, { userId, ...options } = {}) => {
-    const rawResult = await ContactCollection.findOneAndUpdate({ _id: contactId, userId }, payload, { new: true, ...options, },);
-  
-    if (!rawResult) return null;
+export const updateContact = async (contactId, payload, options = {}) => {
+  const rawResult = await ContactCollection.findOneAndUpdate(
+    { _id: contactId, userId: payload.userId },
+    payload,
+    { new: true, ...options }
+  );
 
-    return {
-        data: rawResult,
-        isNew: Boolean(options?.upsert && !rawResult)
-    };
+  if (!rawResult) return null;
+
+  return {
+    data: rawResult,
+    isNew: Boolean(options?.upsert && !rawResult),
+  };
 };
 
 
