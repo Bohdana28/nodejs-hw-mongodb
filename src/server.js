@@ -1,5 +1,7 @@
 import cookieParser from 'cookie-parser';
 
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
+
 import express from "express";
 import cors from "cors";
 
@@ -8,7 +10,7 @@ import router from "./routers/index.js";
 
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
-//import { logger } from "./middlewares/logger.js";//
+import { logger } from "./middlewares/logger.js";
 
 import { UPLOAD_DIR } from './constants/index.js';
 
@@ -21,6 +23,7 @@ export const setupServer = () => {
     app.use(cookieParser());
 
     app.use('/uploads', express.static(UPLOAD_DIR));
+    app.use('/api-docs', swaggerDocs());
 
     app.use(router);
 
